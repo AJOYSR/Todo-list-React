@@ -1,23 +1,61 @@
-import logo from './logo.svg';
 import './App.css';
+import Header from "./components/Header";
+import TodoList from './components/TodoList';
+import Form from "./components/Form";
+import { useState } from "react";
 
-function App() {
+const App = () => {
+  const [todos, setTodos] = useState([
+    {
+      title: "",
+      isCompleted: false,
+    }
+
+  ]);
+  // const [completed, setCompleted] = useState(false);
+
+  const completeTodo = (index) => {
+    const newTodos = [...todos];
+    if (newTodos[index].isCompleted === true) {
+      newTodos[index].isCompleted = false;
+    }
+    else {
+      newTodos[index].isCompleted = true;
+    }
+
+    setTodos(newTodos);
+  };
+
+  const addTodo = (title) => {
+    const newTodos = [...todos, { title }];
+    setTodos(newTodos);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <div className='app-wrapper'>
+        <div>
+          <Header />
+        </div>
+        <div>
+          <Form
+            // input={input}
+            // setInput={setInput}
+            todos={todos}
+            setTodos={setTodos}
+            addTodo={addTodo}
+          />
+        </div>
+        <div>
+          <TodoList
+            // input={input}
+            // setInput={setInput}
+            todos={todos}
+            setTodos={setTodos}
+            completeTodo={completeTodo}
+          />
+        </div>
+      </div>
     </div>
   );
 }
