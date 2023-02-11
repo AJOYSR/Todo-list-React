@@ -5,13 +5,7 @@ import Form from "./components/Form";
 import { useState } from "react";
 
 const App = () => {
-  const [todos, setTodos] = useState([
-    {
-      title: "",
-      isCompleted: false,
-    }
-
-  ]);
+  const [todos, setTodos] = useState([]);
   // const [completed, setCompleted] = useState(false);
 
   const completeTodo = (index) => {
